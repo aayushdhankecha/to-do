@@ -15,6 +15,7 @@ export const createTodo = async(data,token)=>{
           auth: token,
         }
       }
+      config.headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
     return axios.post(CREATETODO,data,config)
 };
 
@@ -25,6 +26,7 @@ export const ListTodo = (token,setList)=>{
           auth: token,
         }
       }
+    config.headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
     axios.get(LIST,config)
     .then((data)=>{
         console.log("api",data.data.data.todos);
@@ -40,5 +42,6 @@ export const DltTodo = async(data,token)=>{
           auth: token,
         }
       }
+      config.headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
     return axios.post(DELETE,data,config)
 };
