@@ -16,7 +16,7 @@ const AuthMiddleware = async (req,res,next)=>{
     }
     const token = req.headers['auth'];
     try{
-        const decoded = jwt.verify(token,JWT_TOKEN_SECRET);
+        const decoded = jwt.verify(token,process.env.JWT_TOKEN_SECRET);
         // decoded = JSON.stringify(decoded);
         // console.log("ID",decoded.userId);
         req.userId=decoded.userId;
