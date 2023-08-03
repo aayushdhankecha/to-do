@@ -30,7 +30,7 @@ function Register() {
   const handleSubmit = async () => {
     try {
       const result = await register(form);
-      console.log("result regster", result);
+      // console.log("result regster", result);
       if (result.status === 200) {
         if (result.data.status === 201) {
           setErrors(result.data.data);

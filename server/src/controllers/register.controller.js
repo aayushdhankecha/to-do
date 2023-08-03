@@ -7,9 +7,10 @@ import { json } from "express";
 import jwt from 'jsonwebtoken'
 
 const Register = async (req,res)=>{
+    console.log("Hell");
     const err = validationResult(req);
     // console.log(err,req.body);
-    // console.log(name,username,password,email);
+    console.log(err);
     if(err.isEmpty()){
         const {name,username,password,email}=req.body;
         const hashPassword = await bcrypt.hash(password,10);
@@ -33,6 +34,7 @@ const Register = async (req,res)=>{
                 username:username,
             });
             const token = jwt.sign({userId:result._id},JWT_TOKEN_SECRET);
+            console.log("Succ");
             res.json(jsonGenrate(statusCode.SUCCESS,"Registration Successfull",{userId:result._id,token:token}));
         } catch (error) {
             console.log(error);

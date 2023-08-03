@@ -1,6 +1,6 @@
-export const DB_LINK = "mongodb+srv://Dhruvil:Dhruvil%40307@cluster0.l5qxki1.mongodb.net/TodoOk?appName=mongosh+1.6.2"
+export const DB_LINK = "mongodb+srv://aayushdhankecha:12345@mymongocluster.9r2pukw.mongodb.net/"
 
-export const JWT_TOKEN_SECRET = 'dhruvilkakadiyatodoappproject';
+export const JWT_TOKEN_SECRET = 'aayushdhankechatodoappproject';
 
 export const statusCode={
     SUCCESS:200,

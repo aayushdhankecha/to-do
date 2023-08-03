@@ -4,6 +4,7 @@ import { createTodo, DltTodo, ListTodo } from '../services/api';
 import Header from './partials/header'
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [todo, setTodo] = useState({
@@ -11,15 +12,31 @@ function Home() {
   });
   const [list,setList] = useState([]);
   const u = JSON.parse(localStorage.getItem('user'));
+  const navigation = useNavigate();
+  if(u===undefined || u===null){
+    navigation('/login');
+  }
   const handleInputChnage = (e) => {
     setTodo({ ...todo, [e.target.name]: e.target.value })
   };
   const [todoId,settodoId] = useState({
     todo_id:"",
   });
+  
   useEffect(()=>{
-    ListTodo(u.token,setList);
-  },[u.token]);
+    const u = JSON.parse(localStorage.getItem('user'))
+    // console.log(u);
+    if(u===undefined || u===null){
+      navigation('/login');
+    }
+    else{
+      // u = {
+      //   token:u.token,
+      // }
+      ListTodo(u.token,setList);
+    }
+  },[]);
+  
   const submitTodo = async () => {
     try {
       const u = JSON.parse(localStorage.getItem('user'));
@@ -28,10 +45,10 @@ function Home() {
         const result = await createTodo(todo, u.token);
         if (result.status === 200) {
           if (result.data.status === 200) {
-            console.log(result.data.data);
+            // console.log(result.data.data);
             // console.log("myList arr",arr);
             ListTodo(u.token,setList);
-            console.log(u.token,list);
+            // console.log(u.token,list);
             return;
           }
           if (result.data.status === 202) {
@@ -51,13 +68,14 @@ function Home() {
   };
   const rmv = async (val)=>{
     // console.log("dlt",val);
-    console.log(u.token,val._id);
+    const u = JSON.parse(localStorage.getItem('user'));
+    // console.log(u.token,val._id);
     // await settodoId({todo_id:val._id});
     let ok={todo_id:val._id};
     // console.log(ok);
     const xx = await DltTodo(ok,u.token);
     // console.log(xx);
-    ListTodo(u.token,setList);
+    await ListTodo(u.token,setList);
   };
   return (
     <div>

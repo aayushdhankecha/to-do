@@ -10,7 +10,7 @@ const Header = () => {
     }, [navigation]);
     const handleLogout = () => {
         localStorage.clear();
-        console.log("ok");
+        // console.log("ok");
         redirect('/navigation')
     }
 

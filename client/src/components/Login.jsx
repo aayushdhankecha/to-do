@@ -79,7 +79,7 @@ function Login() {
                   placeholder='Enter email or username'
                 />
                 {
-                  errors?.username && (<small id='emailHelp' className='form-text text-muted'>
+                  errors?.username && (<small id='emailHelp' className='form-text text-danger'>
                     {errors.username.msg}
                   </small>)
                 }
@@ -99,7 +99,7 @@ function Login() {
                   placeholder='Enter Password'
                 />
                 {
-                  errors?.password && (<small id='emailHelp' className='form-text text-muted'>
+                  errors?.password && (<small id='emailHelp' className='form-text text-danger'>
                     {errors.password.msg}
                   </small>)
                 }

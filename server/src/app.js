@@ -14,11 +14,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 mongoose.set('strictQuery', false);
+console.log(process.env.DB_LINK);
 mongoose.connect(process.env.DB_LINK)
     .then(()=>{console.log("DataBase connection successful")})
     .catch((e)=>{console.log("Database err " + e)});
 
-const port = process.env.PORT || process.env.X
+const port = 5000;
 
 apiRoute.post('/register',apiRoute);
 app.use('/api/',apiRoute);
